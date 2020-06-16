@@ -29,10 +29,10 @@ jobs:
       - name: Run Tests
         run: npm run cypress:ci
     
-  e2e-visual-applitoolsSendCompletion:
+  applitoolsSendCompletion:
     needs: test-content
     if: always()
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Update Applitools batch status
         uses: wei/curl@v1.1.1
