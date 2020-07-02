@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches:
@@ -12,9 +8,9 @@ on:
 env:
     APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
     APPLITOOLS_BATCH_ID: ${{ github.sha }}
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  test-content:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,12 +25,12 @@ jobs:
       - name: Run Tests
         run: npm run cypress:ci
     
-  applitoolsSendCompletion:
-    needs: test-content
+  batch-completion-notification:
+    needs: run-tests
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: Update Applitools batch status
+      - name: Update Applitools batch status 
         uses: wei/curl@v1.1.1
         with:
           args: -d "" -X POST https://eyesapi.applitools.com/api/externals/github/servers/github.com/commit/${{ env.APPLITOOLS_BATCH_ID }}/complete?apiKey=${{ secrets.APPLITOOLS_API_KEY }}   
