@@ -1,6 +1,2 @@
 
-Update Readme
-After updating hook
-
-
-Not seeing SCM
+Run this for testing Applitools + Cypress + GitActions
