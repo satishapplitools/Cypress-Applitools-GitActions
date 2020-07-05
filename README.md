@@ -1,2 +1,4 @@
 
-Run this for testing Applitools + Cypress + GitActions
+Run this for testing Applitools + Cypress + GitActions.
+
+Modified the read.me file
